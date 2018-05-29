@@ -66,8 +66,7 @@ public:
     /* Retorna o pai de um no */
     node *get_parent(const T& v) const;
 
-    /* Retorna o pai de um no */
-   node *get_parent(const T& v, node *r) const;
+
 
     /*
      *  Algoritmos de travessia
@@ -85,19 +84,25 @@ public:
     /* Retorna a altura da arvore a partir da raiz */
     int height() const;
 
-    /* Retorna a altura da arvore dado um no */
-    int height(const node* n) const;
-
-    node *min_value(node *n) const;
     void erase(const T& v, node *r);
     bool empty();
 
 private:
+
     Btree(Btree&);
     Btree& operator=(Btree&);
 
+    /* Retorna a altura da arvore dado um no */
+    int height(const node* n) const;
+
+    /* Retorna o no com o menor valor*/
+    node *min_value(node *n) const;
+
+    /* Retorna o pai de um no */
+    node *get_parent(const T& v, node *r) const;
+
+    /* Deleta a arvore binaria */
     void clear(node *n);
-//    template <class Functor> void clear(node *n);
 
 private:
     node *root_;
@@ -281,13 +286,6 @@ Btree<T>::clear(node *n)
     }
 }
 
-//template <class T> void
-//Btree<T>::clear(node *n)
-//{
-//    delete n;
-//    n = nullptr;
-//}
-
 template<class T> typename Btree<T>::node*
 Btree<T>::min_value(node *n) const
 {
@@ -333,10 +331,6 @@ Btree<T>::erase(const T &v, node *r)
         else
           parent_aux->right = tmp;
 
-
-//        delete (n);
-//        n = nullptr;
-
         erase(tmp->data, parent_aux);
 
     }
@@ -363,8 +357,6 @@ Btree<T>::erase(const T &v, node *r)
       else
         r = aux;
 
-//      delete (n);
-//      n = nullptr;
     }
 
     delete (n);

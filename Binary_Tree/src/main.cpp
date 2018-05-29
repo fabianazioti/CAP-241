@@ -11,16 +11,12 @@
 #include <vector>
 
 
-
-//template <class Functor> void print(Functor data){
-//    std::cout << data << "\t " ;
-//}
-
 template <class Functor> void print(Functor data){
     std::cout << data << "\t " ;
 }
 
-/* Exercicio 2 deve fornecer a implementacao da arvore binaria
+/*
+ * Exercicio 2 deve fornecer a implementacao da arvore binaria
  * e as funcoes para insercao busca e remocao
 */
 void exercicio_2()
@@ -33,11 +29,11 @@ void exercicio_2()
     binary_tree.insert(8);
     binary_tree.insert(15);
     binary_tree.insert(13);
-//    binary_tree.insert(18);
-//    binary_tree.insert(17);
-    binary_tree.insert(20);
-    binary_tree.insert(17);
     binary_tree.insert(18);
+    binary_tree.insert(17);
+//    binary_tree.insert(20);
+//    binary_tree.insert(17);
+//    binary_tree.insert(18);
 
     /* Busca */
     Btree<int>::node *n = binary_tree.find(10);
@@ -55,6 +51,8 @@ void exercicio_2()
     binary_tree.pre_order(print<int>);
     std::cout << "\n";
 }
+
+/* Operacoes de travessia na arvore */
 void exercicio_3()
 {
     Btree<int> binary_tree;
@@ -62,27 +60,46 @@ void exercicio_3()
     binary_tree.insert(10);
     binary_tree.insert(8);
     binary_tree.insert(15);
+    binary_tree.insert(7);
+    binary_tree.insert(20);
 
-    Btree<int>::node *n= binary_tree.find(10);
+    std::cout << "\n Exercicio 3 Operacoes de travessia na arvore.. " << std::endl;
 
-    std::cout << "Pre order: ";
+    std::cout << " Pre order: ";
     binary_tree.pre_order(print<int>);
-    std::cout << "\n";
-    std::cout << "In order: ";
+
+    std::cout << "\n In order: ";
     binary_tree.in_order(print<int>);
-    std::cout << "\n";
-    std::cout << "Pos order: ";
+
+    std::cout << "\n Pos order: ";
     binary_tree.pos_order(print<int>);
+
     std::cout << "\n";
 
-//    Btree<int>::node* min = binary_tree.min_value(binary_tree.get_root());
-//    std::cout << "Min Value " << min->data << std::endl;
+//    Btree<double> binary_tree_d;
+
+//    binary_tree_d.insert(10.0);
+//    binary_tree_d.insert(8.5);
+//    binary_tree_d.insert(15.2);
+//    binary_tree_d.insert(7.8);
+//    binary_tree_d.insert(20.2);
+
+//    std::cout << " Pre order: ";
+//    binary_tree_d.pre_order(print<double>);
+
+//    std::cout << "\n In order: ";
+//    binary_tree_d.in_order(print<double>);
+
+//    std::cout << "\n Pos order: ";
+//    binary_tree_d.pos_order(print<double>);
+
+//    std::cout << "\n";
+
 }
 
-// Calcula a altura da arvore binaria
+/* Calcula a altura da arvore binaria */
 void exercicio_4()
 {
-    std::cout << "teste";
     Btree<int> binary_tree;
 
     binary_tree.insert(10);
@@ -91,22 +108,24 @@ void exercicio_4()
     binary_tree.insert(13);
     binary_tree.insert(20);
     binary_tree.insert(16);
-    binary_tree.insert(4);
-    binary_tree.insert(9);
+//    binary_tree.insert(4);
+//    binary_tree.insert(9);
 
-
-    std::cout << "Altura " << binary_tree.height(binary_tree.get_root()) << std::endl;
+    std::cout << "\n Exercicio 4 Altura " << std::endl;
+    std::cout << "\nIn order: ";
+    binary_tree.in_order(print<int>);
+    std::cout << "\nAltura: " << binary_tree.height() << std::endl;
 }
-void exercicio_6()
+void exercicio_5()
 {
     std::vector<int> n {10, 100, 1000, 10000, 100000,1000000, 10000000};
 
-    std::random_device rd;  //Will be used to obtain a seed for the random number engine
-
-    std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+    std::random_device rd;
+    std::mt19937 gen(rd());
 
     std::ofstream x;
     std::ofstream h;
+
     x.open ("x.txt");
     h.open("h.txt");
 
@@ -121,10 +140,10 @@ void exercicio_6()
         }
 
         x << nn << "\n";
-        h <<  binary_tree.height(binary_tree.get_root()) << "\n";
+        h <<  binary_tree.height() << "\n";
 
-        std::cout << "N: " << nn << " " << "Altura "<< binary_tree.height(binary_tree.get_root()) << " "
-                  << "altura/log2(n): " << binary_tree.height(binary_tree.get_root())/log2(nn) << std::endl;
+//        std::cout << "N: " << nn << " " << "Altura "<< binary_tree.height() << " "
+//                  << "altura/log2(n): " << binary_tree.height()/log2(nn) << std::endl;
     }
 
     x.close();
@@ -134,9 +153,11 @@ void exercicio_6()
 int main()
 {
     exercicio_2();
-//    exercicio_3();
-//    exercicio_4();
-//    exercicio_6();
+    exercicio_3();
+    exercicio_4();
+
+// O exercicio 5 esta no pdf
+//    exercicio_5();
 
     return 0;
 }
