@@ -20,9 +20,12 @@ template <class Functor> void print(Functor data){
     std::cout << data << "\t " ;
 }
 
+/* Exercicio 2 deve fornecer a implementacao da arvore binaria
+ * e as funcoes para insercao busca e remocao
+*/
 void exercicio_2()
 {
-    //Insercao
+
     Btree<int> binary_tree;
 
     /* Operação de Inserção */
@@ -37,7 +40,9 @@ void exercicio_2()
     binary_tree.insert(18);
 
     /* Busca */
-//    Btree<int>::node *n = binary_tree.find(10);
+    Btree<int>::node *n = binary_tree.find(10);
+
+    std::cout << "Valor procurado " << n->data << std::endl;
 
     std::cout << "Pre order: ";
     binary_tree.pre_order(print<int>);
@@ -90,7 +95,7 @@ void exercicio_4()
     binary_tree.insert(9);
 
 
-    std::cout << "Altura " << binary_tree.height() << std::endl;
+    std::cout << "Altura " << binary_tree.height(binary_tree.get_root()) << std::endl;
 }
 void exercicio_6()
 {
@@ -116,10 +121,10 @@ void exercicio_6()
         }
 
         x << nn << "\n";
-        h <<  binary_tree.height() << "\n";
+        h <<  binary_tree.height(binary_tree.get_root()) << "\n";
 
-        std::cout << "N: " << nn << " " << "Altura "<< binary_tree.height() << " "
-                  << "altura/log2(n): " << binary_tree.height()/log2(nn) << std::endl;
+        std::cout << "N: " << nn << " " << "Altura "<< binary_tree.height(binary_tree.get_root()) << " "
+                  << "altura/log2(n): " << binary_tree.height(binary_tree.get_root())/log2(nn) << std::endl;
     }
 
     x.close();
@@ -128,10 +133,10 @@ void exercicio_6()
 }
 int main()
 {
-//    exercicio_2();
+    exercicio_2();
 //    exercicio_3();
 //    exercicio_4();
-    exercicio_6();
+//    exercicio_6();
 
     return 0;
 }

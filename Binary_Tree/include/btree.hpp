@@ -2,7 +2,7 @@
  *
  * \file include/btre.hpp
  *
- * \brief
+ * \brief Binary Tree Data Structure
  *
  * \author Fabiana Zioti
  *
@@ -29,31 +29,65 @@ public:
 
     struct node
     {
+    public:
+        T data;
     private:
         node *left;
         node *right;
 
-    public:
-        T data;
-        node(const T &v, node *l = nullptr,node *r = nullptr) : data(v), left(l), right(r) { }
+    node(const T &v, node *l = nullptr,node *r = nullptr) : data(v), left(l), right(r) { }
 
     friend class Btree;
     };
 
+    /* Construtor da Classe.
+     * Nao recebe nenhum parametro e inicialmente a raiz e nula
+     */
     Btree();
-    explicit Btree(std::initializer_list<T> init);
+
+    /* Destrutor da Classe */
     ~Btree();
+
+    /* Insere os valores da lista na arvore binaria */
+    explicit Btree(std::initializer_list<T> init);
+
+    /* Insere um novo valor na arvore binaria */
     node *insert(const T& v);
+
+    /* Procura um valor na arvore */
     node *find(const T& v) const;
+
+    /* Procura um valor na arvore */
     node *find(const T& v, node* n) const;
+
+    /* Retorna a raiz da arvore */
     node *get_root() const;
+
+    /* Retorna o pai de um no */
     node *get_parent(const T& v) const;
-    node *get_parent(const T& v, node *r) const;
+
+    /* Retorna o pai de um no */
+   node *get_parent(const T& v, node *r) const;
+
+    /*
+     *  Algoritmos de travessia
+     * Aplica uma determinada função nos elementos da árvore
+    */
     template <typename Functor> void pre_order(Functor f) const;
     template <typename Functor> void in_order(Functor f) const;
     template <typename Functor> void pos_order(Functor f) const;
 
+   /* Algoritmos de travessia */
+   template<typename Functor> void pre_order(const node *n, Functor f) const;
+   template<typename Functor> void in_order(const node *n, Functor f) const;
+   template<typename Functor> void pos_order(const node *n, Functor f) const;
+
+    /* Retorna a altura da arvore a partir da raiz */
     int height() const;
+
+    /* Retorna a altura da arvore dado um no */
+    int height(const node* n) const;
+
     node *min_value(node *n) const;
     void erase(const T& v, node *r);
     bool empty();
@@ -61,10 +95,7 @@ public:
 private:
     Btree(Btree&);
     Btree& operator=(Btree&);
-    template<typename Functor> void pre_order(const node *n, Functor f) const;
-    template<typename Functor> void in_order(const node *n, Functor f) const;
-    template<typename Functor> void pos_order(const node *n, Functor f) const;
-    int height(const node* n) const;
+
     void clear(node *n);
 //    template <class Functor> void clear(node *n);
 
@@ -76,7 +107,14 @@ template <class T>
 Btree<T>::Btree()
     :root_(nullptr)
 {
-    std::cout << "Constructor" << std::endl;
+    /* std::cout << "Constructor" << std::endl; */
+}
+
+template<class T>
+Btree<T>::~Btree()
+{
+    /* std::cout << "Destrutor" << std::endl; */
+    clear(root_);
 }
 
 template<class T>
@@ -86,13 +124,6 @@ Btree<T>::Btree(std::initializer_list<T> init)
     insert(v);
 }
 
-template<class T>
-Btree<T>::~Btree()
-{
-    std::cout << "Destrutor" << std::endl;
-    clear(root_);
-//    pos_order(clear(root_));
-}
 template<class T> typename Btree<T>::node*
 Btree<T>::insert(const T &v)
 {
@@ -219,59 +250,6 @@ Btree<T>::pos_order(const node * n, Functor f) const
     f(n->data);
 }
 
-//template<class T> void
-//Btree<T>::pre_order() const
-//{
-//    pre_order(root_);
-//}
-//template<class T> void
-//Btree<T>::pre_order(const node *n) const
-//{
-//    if(n == nullptr)
-//        return;
-
-//    std::cout << n->data << "\t";
-//    pre_order(n->left);
-//    pre_order(n->right);
-
-//}
-
-//template<class T> void
-//Btree<T>::in_order() const
-//{
-//    in_order(root_);
-//}
-
-//template<class T> void
-//Btree<T>::in_order(const node *n) const
-//{
-//    if(n == nullptr)
-//        return;
-
-//    in_order(n->left);
-//    std::cout << n->data << "\t";
-//    in_order(n->right);
-
-//}
-
-//template<class T> void
-//Btree<T>::pos_order() const
-//{
-//    pos_order(root_);
-//}
-
-//template<class T> void
-//Btree<T>::pos_order(const node *n) const
-//{
-//    if(n == nullptr)
-//        return;
-
-//    pos_order(n->left);
-//    pos_order(n->right);
-//    std::cout << n->data << "\t";
-
-//}
-
 template<class T> int
 Btree<T>::height() const
 {
@@ -313,18 +291,14 @@ Btree<T>::clear(node *n)
 template<class T> typename Btree<T>::node*
 Btree<T>::min_value(node *n) const
 {
-//    node *aux = new node(n->data, n->left, n->right );
     node *aux = n;
-
-    // precisa ?
-    if(aux == nullptr)
-      return nullptr;
 
     while(aux->left != nullptr)
         aux = aux->left;
 
     return aux;
 }
+
 template<class T> void
 Btree<T>::erase(const T &v, node *r)
 {
