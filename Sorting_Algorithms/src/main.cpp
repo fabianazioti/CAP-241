@@ -51,15 +51,15 @@ void teste_random(std::vector<double>& values, std::string path)
     // insertion_sort(values);
     // selection_sort(values);
     // merge_sort(values, 0, values.size() - 1);
-    // quick_sort(values, 0, values.size() - 1);
+    quick_sort(values, 0, values.size() - 1);
     // heapsort(values, values.size() - 1);
 
     // stl algorithm
     // std::sort(values.begin(),values.end());
     // std::stable_sort(values.begin(),values.end());
 
-    std::make_heap(values.begin(),values.end());
-    std::sort_heap(values.begin(),values.end());
+    // std::make_heap(values.begin(),values.end());
+    // std::sort_heap(values.begin(),values.end());
 
     auto end = std::chrono::steady_clock::now();
 
@@ -91,15 +91,15 @@ void order(std::vector<double>& values, std::string path)
     // insertion_sort(values);
     // selection_sort(values);
     // merge_sort(values, 0, values.size() - 1);
-    // quick_sort(values, 0, values.size() - 1);
+    quick_sort(values, 0, values.size() - 1);
     // heapsort(values, values.size() - 1);
 
     // // stl algorithm
     // std::sort(values.begin(),values.end());
     // std::stable_sort(values.begin(),values.end());
 
-    std::make_heap(values.begin(),values.end());
-    std::sort_heap(values.begin(),values.end());
+    // std::make_heap(values.begin(),values.end());
+    // std::sort_heap(values.begin(),values.end());
 
     auto end = std::chrono::steady_clock::now();
 
@@ -124,6 +124,7 @@ void order(std::vector<double>& values, std::string path)
 int main()
 {
     std::vector<size_t> tam_vec = {19200, 38400, 76800, 153600, 307200, 614400};
+    // std::vector<size_t> tam_vec = {19};
 
     // std::string random = "insertion_sort_rand.txt";
     // std::string des = "insertion_sort_de.txt";
@@ -137,9 +138,9 @@ int main()
     // std::string des = "merge_sort_de.txt";
     // std::string cres = "merge_sort_cre.txt";
 
-    // std::string random = "quick_sort_rand.txt";
-    // std::string des = "quick_sort_de.txt";
-    // std::string cres = "quick_sort_cre.txt";
+    std::string random = "quick_sort_rand.txt";
+    std::string des = "quick_sort_de.txt";
+    std::string cres = "quick_sort_cre.txt";
 
     // std::string random = "heapsort_rand.txt";
     // std::string des = "heapsort_de.txt";
@@ -154,9 +155,9 @@ int main()
     // std::string des = "stlstable_sort_de.txt";
     // std::string cres = "stlstable_sort_cre.txt";
 
-    std::string random = "stlsort_heap_sort_rand.txt";
-    std::string des = "stlsort_heap_sort_de.txt";
-    std::string cres = "stlsort_heap_sort_cre.txt";
+    // std::string random = "stlsort_heap_sort_rand.txt";
+    // std::string des = "stlsort_heap_sort_de.txt";
+    // std::string cres = "stlsort_heap_sort_cre.txt";
 
 
 

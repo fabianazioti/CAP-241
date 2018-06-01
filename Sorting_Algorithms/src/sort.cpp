@@ -118,13 +118,13 @@ void merge_sort(std::vector<double> &a, int l, int r)
     }
 }
 
-int partition(std::vector<double> &a, const int &l, const int &r)
+int partition(std::vector<double> &a, const int p, const int r)
 {
     double pivo = a[r];
 
-    int i = l - 1;
+    int i = p - 1; 
 
-    for (int j = l; j < r; ++j)
+    for (int j = p; j <= r - 1; ++j)
     {
          if(a[j] <= pivo)
          {
@@ -135,16 +135,16 @@ int partition(std::vector<double> &a, const int &l, const int &r)
 
      std::swap(a[i + 1], a[r]);
 
-     return i;
+     return i + 1;
 }
-void quick_sort(std::vector<double> &a, int l, int r)
+void quick_sort(std::vector<double> &a, int p, int r)
 {
-    int p = 0;
+    int q;
 
-    if(l < r)
+    if(p < r)
     {
-      p = partition(a, l, r);
-      quick_sort(a, l, p);
-      quick_sort(a, p + 1 , r);
+      q = partition(a, p, r);
+      quick_sort(a, p, q-1);
+      quick_sort(a, q + 1 , r);
     }
 }
