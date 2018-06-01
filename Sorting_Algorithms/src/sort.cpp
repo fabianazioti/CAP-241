@@ -1,20 +1,20 @@
 #include "sort.hpp"
 
-#include <iostream>
+//BibliotecaS C++
 #include <iostream>
 
 
-void select_sort(std::vector<double> &a)
+void selection_sort(std::vector<double> &a)
 {
     size_t min_pos;
 
-    for(size_t i = 0; i < a.size() - 1; i++)
+    for(size_t i = 0; i < a.size() - 1; ++i)
     {
         min_pos = i;
 
-        for(size_t j = i+1; j < a.size(); j++)
+        for(size_t j = i+1; j < a.size(); ++j)
         {
-            std::cout << a.size() << "-- J: " << j << '\n';
+            
             if(a[j] < a[min_pos])
                min_pos = j;
         }
@@ -23,15 +23,16 @@ void select_sort(std::vector<double> &a)
     }
 }
 
-void insert_sort(std::vector<double> &a)
+
+void insertion_sort(std::vector<double> &a)
 {
-    std::cout << "Start insert_sort \n";
+
     double v;
     size_t i;
 
-    for(size_t j = 1; j < a.size(); j++ )
+    for(size_t j = 1; j < a.size(); ++j)
     {
-        std::cout << a.size() << "-- J: " << j << '\n';
+        
         v = a[j];
         i = j-1;
 
@@ -43,7 +44,7 @@ void insert_sort(std::vector<double> &a)
         a[i+1] = v;
 
     }
-    std::cout << "END insert_sort \n";
+    
 }
 
 void fix_down_heap(std::vector<double> &A, int n, int pos)
@@ -80,17 +81,17 @@ void heapsort(std::vector<double> &A, int n)
 }
 
 
-void merge(std::vector<double> &a, size_t l, size_t p , size_t r)
+void merge(std::vector<double> &a, int l, int p , int r)
 {
     std::vector<double> L(a.begin() + l, a.begin() + (p + 1));
     std::vector<double> R(a.begin() + (p +1) , a.begin() + r + 1);
 
-    size_t i = 0, j = 0;
+    int i = 0, j = 0;
 
     L.push_back(std::numeric_limits<double>::max());
     R.push_back(std::numeric_limits<double>::max());
 
-    for (size_t k = l; k <= r; k++)
+    for (int k = l; k <= r; k++)
     {
         if(L[i] <= R[j])
         {
@@ -104,9 +105,9 @@ void merge(std::vector<double> &a, size_t l, size_t p , size_t r)
         }
     }
 }
-void merge_sort(std::vector<double> &a, size_t l, size_t r)
+void merge_sort(std::vector<double> &a, int l, int r)
 {
-    size_t p;
+    int p;
 
     if(l < r)
     {
@@ -121,9 +122,9 @@ int partition(std::vector<double> &a, const int &l, const int &r)
 {
     double pivo = a[r];
 
-    size_t i = l - 1;
+    int i = l - 1;
 
-    for (size_t j = l; j < r; ++j)
+    for (int j = l; j < r; ++j)
     {
          if(a[j] <= pivo)
          {
