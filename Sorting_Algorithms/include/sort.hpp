@@ -13,8 +13,8 @@ void fix_down_heap(std::vector<double> &, int, int);
 void heapsort(std::vector<double> &, int);
 void merge(std::vector<double> &, size_t , size_t , size_t );
 void merge_sort(std::vector<double> &, size_t, size_t);
-size_t partition(std::vector<double> &, const size_t &, const size_t&);
-void quick_sort(std::vector<double> &, size_t, size_t);
+int partition(std::vector<double> &, const int &, const int&);
+void quick_sort(std::vector<double> &, int, int);
 
 
 

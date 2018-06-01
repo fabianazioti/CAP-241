@@ -1,9 +1,12 @@
 #include "sort.hpp"
+
 /* Bibliotecas C++*/
+#include <iterator>
+#include <algorithm>
 #include<iostream>
 #include <chrono>
 #include <random>
-#include fstream>
+#include <fstream>
 
 
 void print_vector(const std::vector<double>& values)
@@ -30,46 +33,37 @@ void generate_random(std::vector<double> &vet)
          vet[n] = dis(gen);
     }
 
-
 }
-void teste_random()
+
+void teste_random(std::vector<double>& values, std::string path)
 {
-
-    const int tam = 10000;
-
-    std::vector<double> values(tam);
-
     std::fstream myfile;
 
-    myfile.open("/home/fabiana/Documentos/INPE/devel/github/CAP-241/Sorting_Algorithms/build/tempo.txt", std::ios::in | std::ios::out | std::ios::app);
+    myfile.open(path, std::ios::in | std::ios::out | std::ios::app);
+
 
     generate_random(values);
 
     auto start = std::chrono::steady_clock::now();
 
     /* execução do seu algoritmo */
-//    insert_sort(values);
-//    select_sort(values);
+    // insert_sort(values);
+   select_sort(values);
 //    merge_sort(values, 0, values.size() - 1);
-    quick_sort(values, 0, values.size() - 1);
+    // quick_sort(values, 0, values.size() - 1);
 //    heapsort(values, values.size() - 1);
 
     auto end = std::chrono::steady_clock::now();
 
-    auto elapsed1 = end - start;
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << elapsed1.count() << '\n';
     std::cout << elapsed.count() << '\n';
-
 
     if (myfile.is_open())
     {
 
-      myfile.seekp(myfile.tellp());
-      myfile << tam << "\t";
-      myfile << (elapsed1).count() << "\t";
-      myfile << (elapsed).count() << "\n";
+        myfile.seekp(myfile.tellp());
+        myfile << (elapsed).count() << "\n";
     }
 
 
@@ -77,115 +71,62 @@ void teste_random()
 
 }
 
-void order_cres()
+void order(std::vector<double>& values, std::string path)
 {
-    const size_t tam = 10;
-    double aux = 1;
-    std::vector<double> values;
     std::fstream myfile;
 
-    myfile.open("/home/fabiana/Documentos/INPE/devel/github/CAP-241/Sorting_Algorithms/build/insert_sort.txt", std::ios::in | std::ios::out | std::ios::app);
-
-    for(size_t i = 0; i < tam; i++)
-    {
-        values.push_back(aux);
-        ++aux;
-    }
-
+    myfile.open(path, std::ios::in | std::ios::out | std::ios::app);
 
     auto start = std::chrono::steady_clock::now();
 
     /* execução do seu algoritmo */
-    insert_sort(values);
-//    select_sort(values);
-//    merge_sort(values, 0, values.size() - 1);
-//    quick_sort(values, 0, values.size() - 1);
-//    heapsort(values, values.size() - 1);
+    // insert_sort(values);
+   select_sort(values);
+   // merge_sort(values, 0, values.size() - 1);
+   // quick_sort(values, 0, values.size() - 1);
+   // heapsort(values, values.size() - 1);
 
     auto end = std::chrono::steady_clock::now();
 
-    auto elapsed1 = end - start;
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << elapsed1.count() << '\n';
     std::cout << elapsed.count() << '\n';
-
 
     if (myfile.is_open())
     {
 
       myfile.seekp(myfile.tellp());
-      myfile << tam << "\t";
-      myfile << (elapsed1).count() << "\t";
       myfile << (elapsed).count() << "\n";
     }
+    else
+        std::cout << "Error open file" << '\n';
 
 
     myfile.close();
 
 }
-void order_des()
-{
-  const size_t tam = 1000;
-  double aux = 10;
-  std::vector<double> values;
-  std::fstream myfile;
 
-  myfile.open("/home/fabiana/Documentos/INPE/devel/github/CAP-241/Sorting_Algorithms/build/tempo.txt", std::ios::in | std::ios::out | std::ios::app);
-
-  for(size_t i = 0; i < tam; i++)
-  {
-      values.push_back(aux);
-      --aux;
-  }
-
-
-  auto start = std::chrono::steady_clock::now();
-
-  /* execução do seu algoritmo */
-//  insert_sort(values);
-//    select_sort(values);
-//    merge_sort(values, 0, values.size() - 1);
-//    quick_sort(values, 0, values.size() - 1);
-//    heapsort(values, values.size() - 1);
-
-  auto end = std::chrono::steady_clock::now();
-
-  auto elapsed1 = end - start;
-  auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-
-  std::cout << elapsed1.count() << '\n';
-  std::cout << elapsed.count() << '\n';
-
-
-  if (myfile.is_open())
-  {
-
-    myfile.seekp(myfile.tellp());
-    myfile << tam << "\t";
-    myfile << (elapsed1).count() << "\t";
-    myfile << (elapsed).count() << "\n";
-  }
-
-
-  myfile.close();
-
-}
 int main()
 {
-//    order_cres();
-//    order_des();
-      teste_random();
+    std::vector<size_t> tam_vec = {19200, 38400, 76800, 153600, 307200, 614400};
+    // std::vector<size_t> tam_vec = {19200};
 
-//    print_vector(values);
-//    insert_sort(values);
-//    select_sort(values);
-//    merge_sort(values, 0, values.size() - 1);
-//    quick_sort(values, 0, values.size() - 1);
-//    heapsort(values, values.size() - 1);
-//    heapsort(values, values.size() - 1);
-//    print_vector(values);
+    std::string random = "select_sort_rand.txt";
+    std::string des = "select_sort_de.txt";
+    std::string cres = "select_sort_cre.txt";
+
+
+    for(int i = 0; i < tam_vec.size(); i++)
+    {
+        std::vector<double> values(tam_vec[i]);
+        teste_random(values, random);
+        order(values, cres);
+        std::reverse(std::begin(values), std::end(values));
+        order(values, des);
+
+    }
+
+
 
   return 0;
 }
-

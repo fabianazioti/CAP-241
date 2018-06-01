@@ -14,6 +14,7 @@ void select_sort(std::vector<double> &a)
 
         for(size_t j = i+1; j < a.size(); j++)
         {
+            std::cout << a.size() << "-- J: " << j << '\n';
             if(a[j] < a[min_pos])
                min_pos = j;
         }
@@ -24,11 +25,13 @@ void select_sort(std::vector<double> &a)
 
 void insert_sort(std::vector<double> &a)
 {
+    std::cout << "Start insert_sort \n";
     double v;
     size_t i;
 
     for(size_t j = 1; j < a.size(); j++ )
     {
+        std::cout << a.size() << "-- J: " << j << '\n';
         v = a[j];
         i = j-1;
 
@@ -40,6 +43,7 @@ void insert_sort(std::vector<double> &a)
         a[i+1] = v;
 
     }
+    std::cout << "END insert_sort \n";
 }
 
 void fix_down_heap(std::vector<double> &A, int n, int pos)
@@ -113,7 +117,7 @@ void merge_sort(std::vector<double> &a, size_t l, size_t r)
     }
 }
 
-size_t partition(std::vector<double> &a, const size_t &l, const size_t &r)
+int partition(std::vector<double> &a, const int &l, const int &r)
 {
     double pivo = a[r];
 
@@ -132,9 +136,9 @@ size_t partition(std::vector<double> &a, const size_t &l, const size_t &r)
 
      return i;
 }
-void quick_sort(std::vector<double> &a, size_t l, size_t r)
+void quick_sort(std::vector<double> &a, int l, int r)
 {
-    size_t p = 0;
+    int p = 0;
 
     if(l < r)
     {
@@ -143,4 +147,3 @@ void quick_sort(std::vector<double> &a, size_t l, size_t r)
       quick_sort(a, p + 1 , r);
     }
 }
-
