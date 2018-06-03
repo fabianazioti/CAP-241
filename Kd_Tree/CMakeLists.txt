@@ -11,10 +11,4 @@ include_directories(include)
 set(SOURCES src/main.cpp)
 set(HDR_FILES include/kdtree.hpp)
 
-#However, the file(GLOB...) allows for wildcard additions:
-#file(GLOB SOURCES "src/*.cpp")
-
-#file(GLOB HDR_FILES "include/*.hpp")
-
 add_executable(kdtree ${SOURCES} ${HDR_FILES})
-

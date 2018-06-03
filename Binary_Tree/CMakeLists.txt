@@ -11,10 +11,4 @@ include_directories(include)
 set(SOURCES src/main.cpp)
 set(HDR_FILES include/btree.hpp)
 
-#However, the file(GLOB...) allows for wildcard additions:
-#file(GLOB SOURCES "src/*.cpp")
-
-#file(GLOB HDR_FILES "include/*.hpp")
-
 add_executable(arv ${SOURCES} ${HDR_FILES})
-
