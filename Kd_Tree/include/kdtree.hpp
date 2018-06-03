@@ -1,8 +1,8 @@
 /*!
  *
- * \file include/btre.hpp
+ * \file include/kdtree.hpp
  *
- * \brief Binary Tree Data Structure
+ * \brief Kd Tree Data Structure
  *
  * \author Fabiana Zioti
  *
@@ -59,6 +59,9 @@ public:
     std::vector<node*>search(const T& xmin, const T& xmax, const T& ymin,const T& ymax);
 
 private:
+
+    Kdtree(Kdtree&);
+    Kdtree& operator=(Kdtree&);
 
     /*Retorna se dois pontos sao iguais*/
     bool compare_point(const T& x, const T& y, const T& x1, const T& y1, const int& h);
@@ -168,7 +171,6 @@ Kdtree<T>::compare_point(const T& x, const T& y, const T& x1, const T& y1, const
     return r;
 }
 
-
 template<class T> std::vector<typename Kdtree<T>::node*>
 Kdtree<T>::search(const T &xmin, const T &xmax, const T &ymin, const T &ymax)
 {
@@ -226,7 +228,6 @@ Kdtree<T>::isin_bbox(const T &min, const T &max, const T &v)
     return false;
 }
 
-
 template<class T> void
 Kdtree<T>::clear(node *n)
 {
@@ -240,4 +241,3 @@ Kdtree<T>::clear(node *n)
 }
 
 #endif // __CAP241_KDTREE_HPP__
-
