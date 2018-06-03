@@ -1,8 +1,8 @@
+/*Sort*/
 #include "sort.hpp"
 
 //BibliotecaS C++
 #include <iostream>
-
 
 void selection_sort(std::vector<double> &a)
 {
@@ -14,7 +14,7 @@ void selection_sort(std::vector<double> &a)
 
         for(size_t j = i+1; j < a.size(); ++j)
         {
-            
+
             if(a[j] < a[min_pos])
                min_pos = j;
         }
@@ -22,7 +22,6 @@ void selection_sort(std::vector<double> &a)
         std::swap(a[i], a[min_pos]);
     }
 }
-
 
 void insertion_sort(std::vector<double> &a)
 {
@@ -32,7 +31,7 @@ void insertion_sort(std::vector<double> &a)
 
     for(size_t j = 1; j < a.size(); ++j)
     {
-        
+
         v = a[j];
         i = j-1;
 
@@ -44,7 +43,7 @@ void insertion_sort(std::vector<double> &a)
         a[i+1] = v;
 
     }
-    
+
 }
 
 void fix_down_heap(std::vector<double> &A, int n, int pos)
@@ -69,7 +68,6 @@ void fix_down_heap(std::vector<double> &A, int n, int pos)
 
 void heapsort(std::vector<double> &A, int n)
 {
-
     for(int k = (n-1)/ 2; k >= 0; --k)
        fix_down_heap(A, n, k);
 
@@ -79,7 +77,6 @@ void heapsort(std::vector<double> &A, int n)
       fix_down_heap(A, i - 1, 0);
     }
 }
-
 
 void merge(std::vector<double> &a, int l, int p , int r)
 {
@@ -105,6 +102,7 @@ void merge(std::vector<double> &a, int l, int p , int r)
         }
     }
 }
+
 void merge_sort(std::vector<double> &a, int l, int r)
 {
     int p;
@@ -122,29 +120,30 @@ int partition(std::vector<double> &a, const int p, const int r)
 {
     double pivo = a[r];
 
-    int i = p - 1; 
+    int i = (p - 1);
 
-    for (int j = p; j <= r - 1; ++j)
+    for (int j = p; j <= (r - 1); j++)
     {
          if(a[j] <= pivo)
          {
-             i++;
+             i = i + 1;
              std::swap(a[i], a[j]);
          }
      }
 
      std::swap(a[i + 1], a[r]);
 
-     return i + 1;
+     return (i + 1);
 }
+
 void quick_sort(std::vector<double> &a, int p, int r)
 {
-    int q;
+    int q = 0;
 
     if(p < r)
     {
       q = partition(a, p, r);
-      quick_sort(a, p, q-1);
-      quick_sort(a, q + 1 , r);
+      quick_sort(a, p, (q - 1));
+      quick_sort(a, (q + 1) , r);
     }
 }

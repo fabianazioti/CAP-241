@@ -1,8 +1,6 @@
 #ifndef __CAP241_SORT_HPP__
 #define __CAP241_SORT_HPP__
 
-//#include "cutf8"
-
 //Biblioteca C++
 #include <algorithm>
 #include <vector>
@@ -13,10 +11,8 @@ void fix_down_heap(std::vector<double> &, int, int);
 void heapsort(std::vector<double> &, int);
 void merge(std::vector<double> &, int , int , int );
 void merge_sort(std::vector<double> &, int, int);
-int partition(std::vector<double> &, const int &, const int&);
+int partition(std::vector<double> &, const int, const int);
+/*CORMEN et al*/
 void quick_sort(std::vector<double> &, int, int);
-
-
-
 
 #endif //__CAP241_SORT_HPP__
