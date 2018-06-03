@@ -1,6 +1,6 @@
 /*!
  *
- * \file include/btre.hpp
+ * \file include/btree.hpp
  *
  * \brief Binary Tree Data Structure
  *
