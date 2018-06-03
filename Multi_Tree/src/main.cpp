@@ -14,8 +14,8 @@ int main()
 
     t1.push_back(&t2);
 
-    std::cout << t1.get_parent() << '\n';
-    std::cout << t3.get_parent()->get_data() << '\n';
+    // std::cout << t1.get_parent() << '\n';
+    std::cout << "Parent data " << t3.get_parent()->get_data() << '\n';
 
     return 0;
 }

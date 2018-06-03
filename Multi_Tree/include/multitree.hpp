@@ -34,7 +34,7 @@ template<class T>
 Multtree<T>::Multtree()
 :parent_(nullptr)
 {
-    std::cout << "Construtor Multtree" << std::endl;
+    // std::cout << "Construtor Multtree" << std::endl;
 }
 
 template<class T>
@@ -48,7 +48,7 @@ Multtree<T>::Multtree(Multtree *m, T data)
 template<class T>
 Multtree<T>::~Multtree()
 {
-  std::cout << "Destrutor" << std::endl;
+  // std::cout << "Destrutor" << std::endl;
 }
 
 
